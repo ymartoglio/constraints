@@ -1,0 +1,23 @@
+{
+  "name": "constaints/default",
+  "description": "check constraints of parameters",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Yoann Martoglio",
+      "email": "sk8yo.cff@gmail.com"
+    }
+  ],
+  "autoload":{
+    "psr-4": {
+      "Constraints\\": "src/"
+    }
+  },
+
+  "require": {
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^6.1"
+  }
+}
