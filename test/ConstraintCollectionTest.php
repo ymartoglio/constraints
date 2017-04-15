@@ -38,4 +38,16 @@ class ConstraintCollectionTest extends TestCase
         $this->assertFalse($collection->isSatisfied(-101));
         $this->assertFalse($collection->isSatisfied(56));
     }
+
+    public function testMultiApplyConstraintInterval()
+    {
+        $collection = new ConstraintCollection([
+            new MaxConstraint(10),
+            new MinConstraint(0)
+        ]);
+
+        $this->assertEquals($collection->apply(-10), 0);
+        $this->assertEquals($collection->apply(50), 10);
+        $this->assertEquals($collection->apply(7), 7);
+    }
 }
