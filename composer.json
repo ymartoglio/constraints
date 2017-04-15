@@ -2,7 +2,7 @@
   "name": "ymartoglio/constaints",
   "description": "Check if constraints on variables are satisfied. No dependence.",
   "minimum-stability": "stable",
-  "license": "proprietary",
+  "license": " GNU GENERAL PUBLIC LICENSE v2",
   "authors": [
     {
       "name": "Yoann Martoglio",
