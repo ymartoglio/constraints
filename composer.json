@@ -1,6 +1,6 @@
 {
-  "name": "constaints/default",
-  "description": "check constraints of parameters",
+  "name": "ymartoglio/constaints",
+  "description": "Check if constraints on variables are satisfied. No dependence.",
   "minimum-stability": "stable",
   "license": "proprietary",
   "authors": [
@@ -13,9 +13,6 @@
     "psr-4": {
       "Constraints\\": "src/"
     }
-  },
-
-  "require": {
   },
   "require-dev": {
     "phpunit/phpunit": "^6.1"
