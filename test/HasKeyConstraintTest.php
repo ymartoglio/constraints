@@ -37,4 +37,28 @@ class HasKeyConstraintTest extends TestCase
         $value = ['limit' => 12, 'offset' => 45];
         $this->assertEquals($constraint->apply($value), ['limit' => 12, 'offset' => 45]);
     }
+
+    public function testHookApply()
+    {
+        $inputValue = 0;
+        $constraint = new HasKeyConstraint('offset',$inputValue);
+
+        $value = $constraint->apply([], null, function($value, $reference){
+            $maxValue = (new \Constraints\MaxConstraint(15))->apply($value[$reference]);
+            $value[$reference] = $maxValue;
+            return $value;
+        });
+
+        $this->assertArrayHasKey('offset', $value);
+        $this->assertEquals($value['offset'], $inputValue);
+
+        $value = $constraint->apply([], null, function($value, $reference){
+            $maxValue = (new \Constraints\MaxConstraint(-15))->apply($value[$reference]);
+            $value[$reference] = $maxValue;
+            return $value;
+        });
+
+        $this->assertArrayHasKey('offset', $value);
+        $this->assertEquals($value['offset'], -15);
+    }
 }

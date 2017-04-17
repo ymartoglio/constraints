@@ -1,7 +1,6 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: yo
+ * User: ymartoglio
  * Date: 15/04/17
  * Time: 03:15
  */
@@ -10,7 +9,7 @@ namespace Constraints;
 
 
 /**
- * Class RequiredConstraint
+ * Class HasKeyConstraint
  * @package Constraints
  */
 class HasKeyConstraint extends Constraint
@@ -30,7 +29,7 @@ class HasKeyConstraint extends Constraint
             throw new \InvalidArgumentException("value must be an array");
         }
 
-        if(is_null($constraint)) {
+        if(is_null($constraint) || !is_string($constraint)) {
             throw new \InvalidArgumentException("constraint cannot be null");
         }
 

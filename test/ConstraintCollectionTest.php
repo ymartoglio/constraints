@@ -50,4 +50,30 @@ class ConstraintCollectionTest extends TestCase
         $this->assertEquals($collection->apply(50), 10);
         $this->assertEquals($collection->apply(7), 7);
     }
+
+    public function testCOllectionIfCollection(){
+
+        $collection1 = new ConstraintCollection( [
+            new MaxConstraint(10),
+            new MinConstraint(0)
+        ]);
+
+        $collection2 = new ConstraintCollection( [
+            new MaxConstraint(7),
+            new MinConstraint(3)
+        ]);
+
+        $collection3 = new ConstraintCollection( [
+            new MaxConstraint(6),
+            new MinConstraint(4)
+        ]);
+
+        $super = new ConstraintCollection([
+            $collection1,
+            $collection2,
+            $collection3
+        ]);
+
+        $this->assertTrue($super->isSatisfied(5));
+    }
 }

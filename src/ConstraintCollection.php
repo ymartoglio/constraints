@@ -1,7 +1,6 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: yo
+ * User: ymartoglio
  * Date: 14/04/17
  * Time: 23:04
  */
@@ -15,13 +14,13 @@ class ConstraintCollection implements ConstraintInterface
     protected $_lazyCheck;
     protected $_constraints;
 
-    public function __construct(array $constraints = [], bool $lazyCheck = false)
+    public function __construct(array $constraints = [], $lazyCheck = false)
     {
         $this->_constraints = $constraints;
         $this->_lazyCheck = $lazyCheck;
     }
 
-    function isSatisfied($value)
+    public function isSatisfied($value)
     {
         foreach ($this->_constraints as $constraint) {
             if(!$constraint->isSatisfied($value)) {
@@ -31,12 +30,11 @@ class ConstraintCollection implements ConstraintInterface
         return true;
     }
 
-    function apply($value)
+    public function apply($value, $hookBefore = null, $hookAfter = null)
     {
         foreach ($this->_constraints as $constraint) {
-            $value = $constraint->apply($value);
+            $value = $constraint->apply($value, $hookBefore = null, $hookAfter = null);
         }
         return $value;
     }
-
 }
