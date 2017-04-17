@@ -26,3 +26,14 @@ $interval->isSatisfied(0); // returns false
 $interval->isSatisfied(11); // returns false
 
 ```
+
+```php
+$hasKey = new HasKeyConstraint('offset',0);
+
+$hasKey->isSatisfied([]); // Returns False
+
+$value = $constraint->apply([]); // Returns ['offset' => 0]
+```
+
+
+

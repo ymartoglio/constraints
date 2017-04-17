@@ -31,7 +31,7 @@ class HasKeyConstraintTest extends TestCase
         $this->assertTrue($constraint->isSatisfied(['limit' => 12, 'offset' => 23]));
     }
 
-    public function testIsNotModifyingValueIfAlreadySatisfied()
+    public function testIsNotModifyingValueIfSatisfied()
     {
         $constraint = new HasKeyConstraint('limit', 15);
         $value = ['limit' => 12, 'offset' => 45];
@@ -40,8 +40,8 @@ class HasKeyConstraintTest extends TestCase
 
     public function testHookApply()
     {
-        $inputValue = 0;
-        $constraint = new HasKeyConstraint('offset',$inputValue);
+        $inputValue = 1000;
+        $constraint = new HasKeyConstraint('limit',$inputValue);
 
         $value = $constraint->apply([], null, function($value, $reference){
             $maxValue = (new \Constraints\MaxConstraint(15))->apply($value[$reference]);
@@ -49,16 +49,18 @@ class HasKeyConstraintTest extends TestCase
             return $value;
         });
 
-        $this->assertArrayHasKey('offset', $value);
-        $this->assertEquals($value['offset'], $inputValue);
+        $this->assertArrayHasKey('limit', $value);
+        $this->assertEquals($value['limit'], 15);
 
-        $value = $constraint->apply([], null, function($value, $reference){
-            $maxValue = (new \Constraints\MaxConstraint(-15))->apply($value[$reference]);
-            $value[$reference] = $maxValue;
+        $constraint = new HasKeyConstraint('offset',30);
+
+        $value = $constraint->apply(['offset' => -12], null, function($value, $reference){
+            $minValue = (new \Constraints\MinConstraint(0))->apply($value[$reference]);
+            $value[$reference] = $minValue;
             return $value;
         });
 
         $this->assertArrayHasKey('offset', $value);
-        $this->assertEquals($value['offset'], -15);
+        $this->assertEquals($value['offset'], 0);
     }
 }
