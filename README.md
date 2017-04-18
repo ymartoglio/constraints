@@ -7,6 +7,7 @@ Example
 -------
 
 ```php
+<?php
 $min = new MinConstraint(5);
 $min->isSatisfied(4); // returns false
 $min->isSatisfied(6); // returns true
@@ -28,6 +29,7 @@ $interval->isSatisfied(11); // returns false
 ```
 
 ```php
+<?php
 $hasKey = new HasKeyConstraint('offset',0);
 
 $hasKey->isSatisfied([]); // Returns False
