@@ -18,7 +18,7 @@ $min->apply(6); // returns 6
 
 $interval = new ConstraintCollection([
     new MinConstraint(5),
-    new MinConstraint(10),
+    new MaxConstraint(10),
 ]);
 
 $interval->isSatisfied(7); // returns true
