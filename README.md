@@ -32,7 +32,7 @@ $hasKey = new HasKeyConstraint('offset',0);
 
 $hasKey->isSatisfied([]); // Returns False
 
-$value = $constraint->apply([]); // Returns ['offset' => 0]
+$constraint->apply([]); // Returns ['offset' => 0]
 ```
 
 
