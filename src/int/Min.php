@@ -5,9 +5,11 @@
  * Time: 23:11
  */
 
-namespace Constraints;
+namespace ymartoglio\Constraints\Int;
 
-class NotNullConstraint extends Constraint
+use ymartoglio\Constraints\Constraint;
+
+class Min extends Constraint
 {
     /**
      * @param mixed $value
@@ -17,11 +19,15 @@ class NotNullConstraint extends Constraint
      */
     protected function _satisfy($value, $constraint)
     {
-        if(is_null($constraint)) {
-            throw new \InvalidArgumentException("constraint cannot be null");
+        if(!is_numeric($value)) {
+            throw new \InvalidArgumentException("value must be a numeric type");
         }
 
-        return !is_null($value);
+        if(!is_numeric($constraint)) {
+            throw new \InvalidArgumentException("constraint must be a numeric type");
+        }
+
+        return $value >= $constraint;
     }
 
     /**
@@ -34,5 +40,4 @@ class NotNullConstraint extends Constraint
     {
         return $this->_satisfy($value, $constraint) ? $value : $constraint;
     }
-
 }

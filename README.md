@@ -1,7 +1,7 @@
 Contraints
 ==========
 
-A libray to Validate variables constraints and apply default if needed.
+A library to Validate variables constraints and apply default if needed.
 
 Example
 -------

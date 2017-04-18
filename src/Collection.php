@@ -5,10 +5,10 @@
  * Time: 23:04
  */
 
-namespace Constraints;
+namespace ymartoglio\Constraints;
 
 
-class ConstraintCollection implements ConstraintInterface
+class Collection implements ConstraintInterface
 {
     protected $_value;
     protected $_lazyCheck;

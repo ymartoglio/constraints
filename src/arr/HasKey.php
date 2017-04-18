@@ -5,14 +5,15 @@
  * Time: 03:15
  */
 
-namespace Constraints;
+namespace ymartoglio\Constraints\Arr;
 
+use ymartoglio\Constraints\Constraint;
 
 /**
  * Class HasKeyConstraint
  * @package Constraints
  */
-class HasKeyConstraint extends Constraint
+class HasKey extends Constraint
 {
 
     private $_default;
@@ -26,7 +27,7 @@ class HasKeyConstraint extends Constraint
     protected function _satisfy($value, $constraint)
     {
         if(!is_array($value)) {
-            throw new \InvalidArgumentException("value must be an array");
+            throw new \InvalidArgumentException("value must be an arr");
         }
 
         if(is_null($constraint) || !is_string($constraint)) {

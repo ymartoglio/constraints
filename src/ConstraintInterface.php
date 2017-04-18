@@ -4,7 +4,7 @@
  * Date: 14/04/17
  * Time: 23:06
  */
-namespace Constraints;
+namespace ymartoglio\Constraints;
 
 interface ConstraintInterface
 {

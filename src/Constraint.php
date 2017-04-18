@@ -5,7 +5,7 @@
  * Time: 00:36
  */
 
-namespace Constraints;
+namespace ymartoglio\Constraints;
 
 /**
  * Class Constraint

@@ -5,10 +5,11 @@
  * Time: 23:11
  */
 
-namespace Constraints;
+namespace ymartoglio\Constraints\Int;
 
+use ymartoglio\Constraints\Constraint;
 
-class MaxConstraint extends Constraint
+class Max extends Constraint
 {
     /**
      * @param mixed $value
