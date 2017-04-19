@@ -1,5 +1,6 @@
 {
-  "name": "ymartoglio/constaints",
+  "name": "ymartoglio/constraints",
+  "type": "library",
   "description": "Check if constraints on variables are satisfied. No dependencies.",
   "minimum-stability": "stable",
   "license": " GNU GENERAL PUBLIC LICENSE v2",
@@ -11,10 +12,7 @@
   ],
   "autoload":{
     "psr-4": {
-      "ymartoglio\\Constraints\\": "src/",
-      "ymartoglio\\Constraints\\Arr\\": "src/arr/",
-      "ymartoglio\\Constraints\\Int\\": "src/int/",
-      "ymartoglio\\Constraints\\Misc\\": "src/misc/"
+      "ymartoglio\\Constraints\\": "src/"
     }
   },
   "require": {

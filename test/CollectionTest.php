@@ -6,18 +6,18 @@
  * Time: 03:43
  */
 
-use Constraints\ConstraintCollection;
-use Constraints\MinConstraint;
-use Constraints\MaxConstraint;
+use ymartoglio\Constraints\Collection;
+use ymartoglio\Constraints\Int\Min;
+use ymartoglio\Constraints\Int\Max;
 use PHPUnit\Framework\TestCase;
 
-class ConstraintCollectionTest extends TestCase
+class CollectionTest extends TestCase
 {
     public function testMultiSatisfactionConstraintOK()
     {
-        $collection = new ConstraintCollection([
-            new MaxConstraint(10),
-            new MinConstraint(3)
+        $collection = new Collection([
+            new Max(10),
+            new Min(3)
         ]);
 
         $this->assertTrue($collection->isSatisfied(3));
@@ -29,9 +29,9 @@ class ConstraintCollectionTest extends TestCase
 
     public function testMultiSatisfactionConstraintNOK()
     {
-        $collection = new ConstraintCollection([
-            new MaxConstraint(-50),
-            new MinConstraint(-100)
+        $collection = new Collection([
+            new Max(-50),
+            new Min(-100)
         ]);
 
         $this->assertFalse($collection->isSatisfied(-49));
@@ -41,9 +41,9 @@ class ConstraintCollectionTest extends TestCase
 
     public function testMultiApplyConstraintInterval()
     {
-        $collection = new ConstraintCollection([
-            new MaxConstraint(10),
-            new MinConstraint(0)
+        $collection = new Collection([
+            new Max(10),
+            new Min(0)
         ]);
 
         $this->assertEquals($collection->apply(-10), 0);
@@ -51,24 +51,24 @@ class ConstraintCollectionTest extends TestCase
         $this->assertEquals($collection->apply(7), 7);
     }
 
-    public function testCOllectionIfCollection(){
+    public function testCollectionIfCollection(){
 
-        $collection1 = new ConstraintCollection( [
-            new MaxConstraint(10),
-            new MinConstraint(0)
+        $collection1 = new Collection( [
+            new Max(10),
+            new Min(0)
         ]);
 
-        $collection2 = new ConstraintCollection( [
-            new MaxConstraint(7),
-            new MinConstraint(3)
+        $collection2 = new Collection( [
+            new Max(7),
+            new Min(3)
         ]);
 
-        $collection3 = new ConstraintCollection( [
-            new MaxConstraint(6),
-            new MinConstraint(4)
+        $collection3 = new Collection( [
+            new Max(6),
+            new Min(4)
         ]);
 
-        $super = new ConstraintCollection([
+        $super = new Collection([
             $collection1,
             $collection2,
             $collection3

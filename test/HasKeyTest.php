@@ -8,14 +8,14 @@
 
 require 'vendor/autoload.php';
 
-use Constraints\HasKeyConstraint;
+use ymartoglio\Constraints\Arr\HasKey;
 use PHPUnit\Framework\TestCase;
 
-class HasKeyConstraintTest extends TestCase
+class HasKeyTest extends TestCase
 {
     public function testKeySetsIfNotSatisfied()
     {
-        $constraint = new HasKeyConstraint('offset',0);
+        $constraint = new HasKey('offset',0);
 
         $this->assertFalse($constraint->isSatisfied([]));
 
@@ -26,14 +26,14 @@ class HasKeyConstraintTest extends TestCase
 
     public function testIsSatisfiedIfAlreadyHasKey()
     {
-        $constraint = new HasKeyConstraint('limit', 15);
+        $constraint = new HasKey('limit', 15);
         $this->assertTrue($constraint->isSatisfied(['limit' => 12]));
         $this->assertTrue($constraint->isSatisfied(['limit' => 12, 'offset' => 23]));
     }
 
     public function testIsNotModifyingValueIfSatisfied()
     {
-        $constraint = new HasKeyConstraint('limit', 15);
+        $constraint = new HasKey('limit', 15);
         $value = ['limit' => 12, 'offset' => 45];
         $this->assertEquals($constraint->apply($value), ['limit' => 12, 'offset' => 45]);
     }
@@ -41,10 +41,10 @@ class HasKeyConstraintTest extends TestCase
     public function testHookApply()
     {
         $inputValue = 1000;
-        $constraint = new HasKeyConstraint('limit',$inputValue);
+        $constraint = new HasKey('limit',$inputValue);
 
         $value = $constraint->apply([], null, function($value, $reference){
-            $maxValue = (new \Constraints\MaxConstraint(15))->apply($value[$reference]);
+            $maxValue = (new ymartoglio\Constraints\Int\Max(15))->apply($value[$reference]);
             $value[$reference] = $maxValue;
             return $value;
         });
@@ -52,10 +52,10 @@ class HasKeyConstraintTest extends TestCase
         $this->assertArrayHasKey('limit', $value);
         $this->assertEquals($value['limit'], 15);
 
-        $constraint = new HasKeyConstraint('offset',30);
+        $constraint = new HasKey('offset',30);
 
         $value = $constraint->apply(['offset' => -12], null, function($value, $reference){
-            $minValue = (new \Constraints\MinConstraint(0))->apply($value[$reference]);
+            $minValue = (new ymartoglio\Constraints\Int\Min(0))->apply($value[$reference]);
             $value[$reference] = $minValue;
             return $value;
         });
