@@ -12,7 +12,10 @@
   ],
   "autoload":{
     "psr-4": {
-      "ymartoglio\\Constraints\\": "src/"
+      "ymartoglio\\Constraints\\": "src/",
+      "ymartoglio\\Constraints\\Arr\\": "src/arr/",
+      "ymartoglio\\Constraints\\Int\\": "src/int",
+      "ymartoglio\\Constraints\\Misc\\": "src/misc"
     }
   },
   "require": {
